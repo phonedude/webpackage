@@ -1175,7 +1175,7 @@ Possible extra rowspan handling
 		   1. When table < content column, centers table in column.
 		   2. When content < table < available, left-aligns.
 		   3. When table > available, fills available + scroll bar.
-		*/ 
+		*/
 		display: grid;
 		grid-template-columns: minmax(0, 50em);
 	}
@@ -1222,9 +1222,9 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version 70ffa934, updated Fri May 1 10:12:04 2020 -0700" name="generator">
+  <meta content="Bikeshed version 40de15f9, updated Thu Jun 11 17:47:04 2020 -0700" name="generator">
   <link href="https://wicg.github.io/webpackage/loading.html" rel="canonical">
-  <meta content="83a83ee876ebd4d59aaf3909c3be262a9a59c1c0" name="document-revision">
+  <meta content="5f74075c556d4f109b8b70cd7d5c719df47bd089" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1482,7 +1482,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Loading Signed Exchanges</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2020-05-08">8 May 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2020-07-06">6 July 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -1777,9 +1777,9 @@ the signed exchange’s response in the HTTP cache.</p>
    <p>A read buffer is a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#struct" id="ref-for-struct①">struct</a> with the following items:</p>
    <ul>
     <li data-md>
-     <p><dfn class="dfn-paneled" data-dfn-for="read buffer" data-dfn-type="dfn" data-noexport id="read-buffer-stream">stream</dfn>: A <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#rs-class" id="ref-for-rs-class">ReadableStream</a></code>.</p>
+     <p><dfn class="dfn-paneled" data-dfn-for="read buffer" data-dfn-type="dfn" data-noexport id="read-buffer-stream">stream</dfn>: A <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream">ReadableStream</a></code>.</p>
     <li data-md>
-     <p><dfn class="dfn-paneled" data-dfn-for="read buffer" data-dfn-type="dfn" data-noexport id="read-buffer-reader">reader</dfn>: A <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#default-reader-class" id="ref-for-default-reader-class">ReadableStreamDefaultReader</a></code> whose stream is <a data-link-type="dfn" href="#read-buffer-stream" id="ref-for-read-buffer-stream">stream</a>.</p>
+     <p><dfn class="dfn-paneled" data-dfn-for="read buffer" data-dfn-type="dfn" data-noexport id="read-buffer-reader">reader</dfn>: A <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestreamdefaultreader" id="ref-for-readablestreamdefaultreader">ReadableStreamDefaultReader</a></code> whose stream is <a data-link-type="dfn" href="#read-buffer-stream" id="ref-for-read-buffer-stream">stream</a>.</p>
     <li data-md>
      <p><dfn class="dfn-paneled" data-dfn-for="read buffer" data-dfn-type="dfn" data-noexport id="read-buffer-bytes">bytes</dfn>: A <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#byte-sequence" id="ref-for-byte-sequence">byte sequence</a> holding the bytes that have been read
 from <a data-link-type="dfn" href="#read-buffer-stream" id="ref-for-read-buffer-stream①">stream</a> but not returned to a calling algorithm yet.</p>
@@ -2666,10 +2666,10 @@ describe an invalid signature:
    </ol>
    <h3 class="heading settled" data-level="4.17" id="stream-algs"><span class="secno">4.17. </span><span class="content">Stream algorithms</span><a class="self-link" href="#stream-algs"></a></h3>
    <p class="issue" id="issue-3ffca592"><a class="self-link" href="#issue-3ffca592"></a> The algorithms in this section create and operate over
-ECMAScript objects like <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#rs-class" id="ref-for-rs-class①">ReadableStream</a></code> despite not having a Realm to attach
+ECMAScript objects like <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream①">ReadableStream</a></code> despite not having a Realm to attach
 them to. <a href="https://github.com/whatwg/fetch/issues/730">&lt;https://github.com/whatwg/fetch/issues/730></a></p>
    <h4 class="heading settled algorithm" data-algorithm="Create a read buffer" data-level="4.17.1" id="create-read-buffer"><span class="secno">4.17.1. </span><span class="content">Create a read buffer</span><a class="self-link" href="#create-read-buffer"></a></h4>
-   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="new-read-buffer">new read buffer</dfn> for a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#rs-class" id="ref-for-rs-class②">ReadableStream</a></code> <var>stream</var> is a new <a data-link-type="dfn" href="#read-buffer" id="ref-for-read-buffer②">read
+   <p>A <dfn class="dfn-paneled" data-dfn-type="dfn" data-noexport id="new-read-buffer">new read buffer</dfn> for a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream②">ReadableStream</a></code> <var>stream</var> is a new <a data-link-type="dfn" href="#read-buffer" id="ref-for-read-buffer②">read
 buffer</a> struct whose items are:</p>
    <dl>
     <dt data-md><a data-link-type="dfn" href="#read-buffer-stream" id="ref-for-read-buffer-stream③">stream</a>
@@ -2751,7 +2751,7 @@ the UA MUST:</p>
      <p>Otherwise, return a failure.</p>
    </ol>
    <h4 class="heading settled algorithm" data-algorithm="Dump to another stream" data-level="4.17.4" id="dump-stream"><span class="secno">4.17.4. </span><span class="content">Dump to another stream</span><a class="self-link" href="#dump-stream"></a></h4>
-   <p>To <dfn class="dfn-paneled" data-dfn-for="read buffer" data-dfn-type="dfn" data-noexport id="read-buffer-dump">Dump</dfn> a <a data-link-type="dfn" href="#read-buffer" id="ref-for-read-buffer⑤">read buffer</a> <var>input</var> to a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#rs-class" id="ref-for-rs-class③">ReadableStream</a></code> <var>output</var>, the UA MUST:</p>
+   <p>To <dfn class="dfn-paneled" data-dfn-for="read buffer" data-dfn-type="dfn" data-noexport id="read-buffer-dump">Dump</dfn> a <a data-link-type="dfn" href="#read-buffer" id="ref-for-read-buffer⑤">read buffer</a> <var>input</var> to a <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream" id="ref-for-readablestream③">ReadableStream</a></code> <var>output</var>, the UA MUST:</p>
    <ol>
     <li data-md>
      <p class="assertion">Assert: This algorithm is running <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/infrastructure.html#in-parallel" id="ref-for-in-parallel⑨">in parallel</a>.</p>
@@ -3722,19 +3722,19 @@ stop the UA from trusting it no more than 7 days later.</p>
     <li><a href="#termref-for-">4.5.1. Handling the certificate reference</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-rs-class">
-   <a href="https://streams.spec.whatwg.org/#rs-class">https://streams.spec.whatwg.org/#rs-class</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-readablestream">
+   <a href="https://streams.spec.whatwg.org/#readablestream">https://streams.spec.whatwg.org/#readablestream</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-rs-class">3.2. Read buffer</a>
-    <li><a href="#ref-for-rs-class①">4.17. Stream algorithms</a>
-    <li><a href="#ref-for-rs-class②">4.17.1. Create a read buffer</a>
-    <li><a href="#ref-for-rs-class③">4.17.4. Dump to another stream</a>
+    <li><a href="#ref-for-readablestream">3.2. Read buffer</a>
+    <li><a href="#ref-for-readablestream①">4.17. Stream algorithms</a>
+    <li><a href="#ref-for-readablestream②">4.17.1. Create a read buffer</a>
+    <li><a href="#ref-for-readablestream③">4.17.4. Dump to another stream</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-default-reader-class">
-   <a href="https://streams.spec.whatwg.org/#default-reader-class">https://streams.spec.whatwg.org/#default-reader-class</a><b>Referenced in:</b>
+  <aside class="dfn-panel" data-for="term-for-readablestreamdefaultreader">
+   <a href="https://streams.spec.whatwg.org/#readablestreamdefaultreader">https://streams.spec.whatwg.org/#readablestreamdefaultreader</a><b>Referenced in:</b>
    <ul>
-    <li><a href="#ref-for-default-reader-class">3.2. Read buffer</a>
+    <li><a href="#ref-for-readablestreamdefaultreader">3.2. Read buffer</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-url-equals">
@@ -4007,8 +4007,8 @@ stop the UA from trusting it no more than 7 days later.</p>
    <li>
     <a data-link-type="biblio">[STREAMS]</a> defines the following terms:
     <ul>
-     <li><span class="dfn-paneled" id="term-for-rs-class" style="color:initial">ReadableStream</span>
-     <li><span class="dfn-paneled" id="term-for-default-reader-class" style="color:initial">ReadableStreamDefaultReader</span>
+     <li><span class="dfn-paneled" id="term-for-readablestream" style="color:initial">ReadableStream</span>
+     <li><span class="dfn-paneled" id="term-for-readablestreamdefaultreader" style="color:initial">ReadableStreamDefaultReader</span>
     </ul>
    <li>
     <a data-link-type="biblio">[URL]</a> defines the following terms:
@@ -4097,7 +4097,7 @@ allow UAs to take clock skew into account. <a href="https://github.com/WICG/webp
    <div class="issue"> This depends on the <a data-link-type="dfn" href="https://httpwg.org/http-extensions/draft-ietf-httpbis-variants.html#cache">Variants Cache
 Behavior</a> returning a list of lists. <a href="https://github.com/httpwg/http-extensions/issues/744">&lt;https://github.com/httpwg/http-extensions/issues/744></a><a href="#issue-e1733bef"> ↵ </a></div>
    <div class="issue"> The algorithms in this section create and operate over
-ECMAScript objects like <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#rs-class">ReadableStream</a></code> despite not having a Realm to attach
+ECMAScript objects like <code class="idl"><a data-link-type="idl" href="https://streams.spec.whatwg.org/#readablestream">ReadableStream</a></code> despite not having a Realm to attach
 them to. <a href="https://github.com/whatwg/fetch/issues/730">&lt;https://github.com/whatwg/fetch/issues/730></a><a href="#issue-3ffca592"> ↵ </a></div>
   </div>
   <aside class="dfn-panel" data-for="request-stashed-exchange">
