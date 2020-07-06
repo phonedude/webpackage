@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-06-30T08:05:30.993607+00:00",
+  "timestamp": "2020-07-06T22:49:47.938205+00:00",
   "repo": "WICG/webpackage",
   "labels": [
     {
@@ -48152,7 +48152,7 @@
       "labels": [],
       "body": "Make `<link>` elements' `resources` attribute `DOMTokenList` so that the explainer matches chromium's current POC implementation.",
       "createdAt": "2020-06-24T02:59:46Z",
-      "updatedAt": "2020-06-30T08:02:25Z",
+      "updatedAt": "2020-06-30T08:30:34Z",
       "baseRepository": "WICG/webpackage",
       "baseRefName": "master",
       "baseRefOid": "83a83ee876ebd4d59aaf3909c3be262a9a59c1c0",
@@ -48193,6 +48193,13 @@
           "body": "@jyasskin @yoavweiss \r\nI'd appreciate if you could merge this RP if the PR is fine to you.\r\nI don't have a merge permission.",
           "createdAt": "2020-06-30T07:25:01Z",
           "updatedAt": "2020-06-30T07:25:01Z"
+        },
+        {
+          "author": "hayatoito",
+          "authorAssociation": "CONTRIBUTOR",
+          "body": "Thanks!",
+          "createdAt": "2020-06-30T08:30:34Z",
+          "updatedAt": "2020-06-30T08:30:34Z"
         }
       ],
       "reviews": [
@@ -48310,6 +48317,32 @@
           ]
         }
       ]
+    },
+    {
+      "number": 587,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDQ0OTg3ODY4",
+      "title": "Add an explainer for the package: URL scheme",
+      "url": "https://github.com/WICG/webpackage/pull/587",
+      "state": "OPEN",
+      "author": "jyasskin",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "This tries to identify and describe all the places that the URL gets exposed in interesting ways to the platform, and define how they'll work. It probably misses several.\r\n\r\nYou can see this rendered at https://github.com/jyasskin/webpackage/blob/package-scheme-explainer/explainers/bundle-urls-and-origins.md.",
+      "createdAt": "2020-07-06T20:34:06Z",
+      "updatedAt": "2020-07-06T22:32:11Z",
+      "baseRepository": "WICG/webpackage",
+      "baseRefName": "master",
+      "baseRefOid": "e8239ae3eb4e1a5ff310e95aff29313f321a66bb",
+      "headRepository": "jyasskin/webpackage",
+      "headRefName": "package-scheme-explainer",
+      "headRefOid": "adc34b8f6340c3f1cd7fa9bcf7c7c9de43a0c282",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
