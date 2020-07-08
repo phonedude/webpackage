@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-07-06T22:49:47.938205+00:00",
+  "timestamp": "2020-07-08T22:40:32.371899+00:00",
   "repo": "WICG/webpackage",
   "labels": [
     {
@@ -46377,13 +46377,13 @@
       "labels": [],
       "body": "@dauwhe, am I representing your position well here? Is there a better description of your opinion on how we make browsers navigate to unsigned books?",
       "createdAt": "2020-02-14T00:01:14Z",
-      "updatedAt": "2020-06-03T02:45:41Z",
+      "updatedAt": "2020-07-08T22:03:39Z",
       "baseRepository": "WICG/webpackage",
       "baseRefName": "master",
-      "baseRefOid": "130f77f09ef0db07327f48c83d0bd3ca11001108",
+      "baseRefOid": "f38446044e22e98165063363a9516b634ccd94e6",
       "headRepository": "jyasskin/webpackage",
       "headRefName": "unsigned-bundle-dev-support",
-      "headRefOid": "27a672d6e0377118c2148ca64ba226da66dad2ad",
+      "headRefOid": "78dfceb7e00a41b74025f11789ead689998854d7",
       "closedAt": null,
       "mergedAt": null,
       "mergedBy": null,
@@ -46421,7 +46421,7 @@
               "originalPosition": 34,
               "body": " * [Dan York of Internet Society](https://www.iab.org/wp-content/IAB-uploads/2019/06/dan-york.pdf) offered use cases for packaging web content focused on availability in low bandwidth / high latency environments. More specifically, part of the ISOC's mission involves reaching people who only have have limited connectivity to the Internet, e.g. WiFi at a few local places that people visit to download content that they want to read or watch later. The ability to package web content would be useful in such context. The ISOC is also working with communities where the electricity is unreliable, which negatively impacts Internet access as a result. Here again, these communities could benefit from the ability to download a package of content, either for learning or reading even in the absence of connectivity.",
               "createdAt": "2020-06-03T02:45:04Z",
-              "updatedAt": "2020-06-03T02:45:04Z"
+              "updatedAt": "2020-07-08T22:03:26Z"
             }
           ]
         },
@@ -46441,7 +46441,67 @@
               "originalPosition": 34,
               "body": "Sorry for the delay, I think this captures what Dan wrote in his position paper but would welcome any feedback or direct edits.",
               "createdAt": "2020-06-03T02:45:40Z",
-              "updatedAt": "2020-06-03T02:45:41Z"
+              "updatedAt": "2020-07-08T22:03:26Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQ1MDc0NDI5",
+          "commit": {
+            "abbreviatedOid": "774bbee"
+          },
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-07-08T19:40:40Z",
+          "updatedAt": "2020-07-08T19:40:41Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "Thanks for the text. After a long delay, it's merged. Everything look good now?",
+              "createdAt": "2020-07-08T19:40:40Z",
+              "updatedAt": "2020-07-08T22:03:26Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQ1MTQ5OTAw",
+          "commit": {
+            "abbreviatedOid": "774bbee"
+          },
+          "author": "danyork",
+          "authorAssociation": "NONE",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-07-08T21:43:13Z",
+          "updatedAt": "2020-07-08T21:43:13Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "@jyasskin and @KenjiBaheux - Thanks for the summary and my apologies for a delay in replying. The text looks good overall, but I'd suggest two changes:\r\n\r\n- we like to spell out \"Internet Society\" versus using \"ISOC\" (two many acronym conflicts in the larger world)\r\n- I would add in a mention of satellite connectivity.\r\n\r\nPerhaps the text would be better as:\r\n\r\nDan York of Internet Society offered use cases for packaging web content focused on availability in low bandwidth / high latency environments. More specifically, part of the Internet Society's work involves reaching people who only have have limited connectivity to the Internet, e.g. WiFi at a few local places that people visit to download content that they want to read or watch later. The ability to package web content would be useful in such context. The Internet Society is also working with communities where the electricity is unreliable, which negatively impacts Internet access as a result. There are also cases where communities only have periodic connectivity via satellite connections. Here again, these communities could benefit from the ability to download a package of content, either for learning or reading even in the absence of connectivity.\r\n",
+              "createdAt": "2020-07-08T21:43:13Z",
+              "updatedAt": "2020-07-08T22:03:26Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQ1MTYwMTEz",
+          "commit": {
+            "abbreviatedOid": "78dfceb"
+          },
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-07-08T22:03:39Z",
+          "updatedAt": "2020-07-08T22:03:39Z",
+          "comments": [
+            {
+              "originalPosition": 34,
+              "body": "Thanks! I've taken that wording.",
+              "createdAt": "2020-07-08T22:03:39Z",
+              "updatedAt": "2020-07-08T22:03:40Z"
             }
           ]
         }
@@ -46638,21 +46698,21 @@
       "id": "MDExOlB1bGxSZXF1ZXN0MzgwNTcyNzA2",
       "title": "Sketch how package: URLs should be rendered.",
       "url": "https://github.com/WICG/webpackage/pull/560",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "jyasskin",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "@annevk requested more information on how `package:` URLs should be rendered, so here's a sketch.\r\n\r\nI haven't yet run this by @estark37 and her team. Emily, does this look like a reasonable start? Are you running away in horror? Do y'all have any better ideas?",
       "createdAt": "2020-02-27T00:18:12Z",
-      "updatedAt": "2020-06-10T21:52:08Z",
+      "updatedAt": "2020-07-08T19:53:19Z",
       "baseRepository": "WICG/webpackage",
       "baseRefName": "master",
       "baseRefOid": "83a83ee876ebd4d59aaf3909c3be262a9a59c1c0",
       "headRepository": "jyasskin/webpackage",
       "headRefName": "untrusted-url-rendering",
       "headRefOid": "faefc1cffc4b9fbb374a006f5d798ec83bbcabe6",
-      "closedAt": null,
+      "closedAt": "2020-07-08T19:52:49Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
@@ -46691,6 +46751,13 @@
           "body": "I haven't mentioned the risk of sites adopting double-url-bars like https://web.archive.org/web/20200514010317/https://tag.w3.org/. It really doesn't seem like bundles make that any more likely.",
           "createdAt": "2020-06-10T21:51:56Z",
           "updatedAt": "2020-06-10T21:52:08Z"
+        },
+        {
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "body": "This is superseded by the [URL rendering bits](https://github.com/jyasskin/webpackage/blob/package-scheme-explainer/explainers/bundle-urls-and-origins.md#rendering-the-url-bar) in #587.",
+          "createdAt": "2020-07-08T19:52:49Z",
+          "updatedAt": "2020-07-08T19:52:49Z"
         }
       ],
       "reviews": []
@@ -48119,25 +48186,33 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDMyNzA3NDIx",
       "title": "Update the description of the package: scheme",
       "url": "https://github.com/WICG/webpackage/pull/584",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "jyasskin",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "Remove the \"//\", and stop escaping nested \":\"s. ",
       "createdAt": "2020-06-10T21:16:20Z",
-      "updatedAt": "2020-06-22T22:41:16Z",
+      "updatedAt": "2020-07-08T19:53:54Z",
       "baseRepository": "WICG/webpackage",
       "baseRefName": "master",
       "baseRefOid": "83a83ee876ebd4d59aaf3909c3be262a9a59c1c0",
       "headRepository": "jyasskin/webpackage",
       "headRefName": "package-url",
       "headRefOid": "a3b032afc32659253c7dccd22420eef062564f3c",
-      "closedAt": null,
+      "closedAt": "2020-07-08T19:53:49Z",
       "mergedAt": null,
       "mergedBy": null,
       "mergeCommit": null,
-      "comments": [],
+      "comments": [
+        {
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "body": "This is superseded by #587.",
+          "createdAt": "2020-07-08T19:53:48Z",
+          "updatedAt": "2020-07-08T19:53:48Z"
+        }
+      ],
       "reviews": []
     },
     {
@@ -48323,26 +48398,89 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDQ0OTg3ODY4",
       "title": "Add an explainer for the package: URL scheme",
       "url": "https://github.com/WICG/webpackage/pull/587",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "jyasskin",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "This tries to identify and describe all the places that the URL gets exposed in interesting ways to the platform, and define how they'll work. It probably misses several.\r\n\r\nYou can see this rendered at https://github.com/jyasskin/webpackage/blob/package-scheme-explainer/explainers/bundle-urls-and-origins.md.",
       "createdAt": "2020-07-06T20:34:06Z",
-      "updatedAt": "2020-07-06T22:32:11Z",
+      "updatedAt": "2020-07-08T22:37:57Z",
       "baseRepository": "WICG/webpackage",
       "baseRefName": "master",
-      "baseRefOid": "e8239ae3eb4e1a5ff310e95aff29313f321a66bb",
+      "baseRefOid": "f38446044e22e98165063363a9516b634ccd94e6",
       "headRepository": "jyasskin/webpackage",
       "headRefName": "package-scheme-explainer",
-      "headRefOid": "adc34b8f6340c3f1cd7fa9bcf7c7c9de43a0c282",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "headRefOid": "8e03f145ad03e6b98cf55dad97ec88e02cbe4951",
+      "closedAt": "2020-07-08T22:37:48Z",
+      "mergedAt": "2020-07-08T22:37:47Z",
+      "mergedBy": "jyasskin",
+      "mergeCommit": {
+        "oid": "fc9b3e75309546c805b5cdb1db74b2d58a8e0b28"
+      },
       "comments": [],
-      "reviews": []
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQzNTY0Mjk5",
+          "commit": {
+            "abbreviatedOid": "adc34b8"
+          },
+          "author": "horo-t",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-07-07T05:04:49Z",
+          "updatedAt": "2020-07-07T05:04:50Z",
+          "comments": [
+            {
+              "originalPosition": 361,
+              "body": "Sorry, I don't understand correctly. Why the message could be intercepted by something inside the same bundle?\r\n\r\nWhen \"package:https:,,a.example.com$https:,,b.example/page.html\" sends a message to \"https://c.example/target.html\", postMessage() should be called with \"https://c.example\" `targetOrigin`.\r\nIn this case, the message can't be intercepted anything inside the same bundle.\r\nIs my understanding incorrect?\r\n",
+              "createdAt": "2020-07-07T05:04:50Z",
+              "updatedAt": "2020-07-08T22:29:07Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQ0MzgyMDE0",
+          "commit": {
+            "abbreviatedOid": "adc34b8"
+          },
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-07-08T03:07:59Z",
+          "updatedAt": "2020-07-08T03:07:59Z",
+          "comments": [
+            {
+              "originalPosition": 361,
+              "body": "My understanding writing this was that if `package:https:,,a.example.com$https:,,b.example/page.html` (a.k.a. \"Packaged-B\") has a `WindowProxy` whose name it sees as `https://c.example/target.html`, that `WindowProxy` could be referring to either the \"real\" `https://c.example/target.html` (Internet-C) fetched over the internet or `package:https:,,a.example.com$https:,,c.example/target.html` (Packaged-C) retrieved from inside the same bundle. And even if Packaged-B has some reason to prefer its message be received by Internet-C, it can't use `targetOrigin` to ensure that, because the two are expressed the same inside the `targetOrigin` field.\r\n\r\nIn the design as it's written here, Packaged-B has absolutely no way to tell those two situations apart (other than knowledge baked in when the package was created). I don't see any harm from giving it a way in the platform to tell the situations apart, but it adds some complication that I haven't been able to justify with a compensating benefit.",
+              "createdAt": "2020-07-08T03:07:59Z",
+              "updatedAt": "2020-07-08T22:29:07Z"
+            }
+          ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQ1MTcxODAx",
+          "commit": {
+            "abbreviatedOid": "8e03f14"
+          },
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-07-08T22:29:16Z",
+          "updatedAt": "2020-07-08T22:29:16Z",
+          "comments": [
+            {
+              "originalPosition": 361,
+              "body": "I've added a similar example to the wording here.",
+              "createdAt": "2020-07-08T22:29:16Z",
+              "updatedAt": "2020-07-08T22:29:16Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
