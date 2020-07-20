@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-07-08T22:40:32.371899+00:00",
+  "timestamp": "2020-07-20T20:23:42.535561+00:00",
   "repo": "WICG/webpackage",
   "labels": [
     {
@@ -8706,9 +8706,38 @@
       "labels": [],
       "body": "(Forked from https://github.com/WICG/origin-policy/issues/87#issuecomment-596029083)\r\n\r\nhttps://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html#name-the-signature-header specifies types for various parameters, but from what I can tell the processing model in https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html#section-3.5-7.1.1 does not explain what to do when the types mismatch.\r\n\r\nIt seems like maybe the intention is to return \"invalid\", but if so I'd expect an explicit step, like \"If integrity is not a string, return \"invalid\".",
       "createdAt": "2020-03-07T02:03:38Z",
-      "updatedAt": "2020-03-07T02:03:38Z",
+      "updatedAt": "2020-07-10T21:27:09Z",
       "closedAt": null,
-      "comments": []
+      "comments": [
+        {
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "body": "https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html#name-signature-validity has \"If an error is thrown during this parsing or any of the requirements described there aren't satisfied, the exchange has no valid signatures.\" Is that what you're looking for?",
+          "createdAt": "2020-07-10T19:18:17Z",
+          "updatedAt": "2020-07-10T19:18:17Z"
+        },
+        {
+          "author": "domenic",
+          "authorAssociation": "NONE",
+          "body": "I guess? It'd be much clearer to locate that after the parsing, however, instead of the monkeypatch-from-a-distance.\r\n\r\nThat is, consider what happens if expires is not a number. A straightforward reading gets to step 3 of https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html#section-3.5-7.1.1 and says \"??? what do I do, is the letter 'a' greater than _date_ + 7 days, or is it less than that?\". What I'm hearing is that after step 1 there's an invisible \"If expires is not a number, return a special value that's not only invalid, but forces all other signatures to become invalid\". But this is pretty confusing...",
+          "createdAt": "2020-07-10T19:46:11Z",
+          "updatedAt": "2020-07-10T19:48:05Z"
+        },
+        {
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "body": "Ah, but step 1 is already after parsing, which happens in the very first sentence of the section. I no longer remember why I put part of the algorithm in text instead of putting it all in numbered steps ... It could have been something about IETF formatting not accepting sufficiently-nested lists, or some reason I couldn't call algorithms well, or something that no longer exists in the document at all.\r\n\r\nSo the TODO here for me is to try to put all of the actual steps into numbered steps.",
+          "createdAt": "2020-07-10T20:22:28Z",
+          "updatedAt": "2020-07-10T20:22:28Z"
+        },
+        {
+          "author": "domenic",
+          "authorAssociation": "NONE",
+          "body": "Ah, nice! So there'd be some \"real step 1\" that parses the header field into a list (which would fail if that didn't work), then step 2 would be a loop that runs the current algorithm for each list item. That would make perfect sense.",
+          "createdAt": "2020-07-10T21:27:09Z",
+          "updatedAt": "2020-07-10T21:27:09Z"
+        }
+      ]
     },
     {
       "number": 564,
@@ -8997,7 +9026,7 @@
       "labels": [],
       "body": "Following on a conversation in  https://chromium-review.googlesource.com/c/chromium/src/+/2226248, I'd like to understand where y'all are coming down on the origins of subresources from unsigned bundles. From conversations with @kinu and team, I'd understood that unsigned packages directly delivered from `https://example.com/` would contain resources that all acted as though they were delivered from `https://example.com/`, and packages whose provenance was indeterminate would be treated as having opaque origins.\r\n\r\nThe scheme proposed in https://github.com/WICG/webpackage/blob/master/explainers/navigation-to-unsigned-bundles.md#urls-for-bundle-components is quite a bit more complicated, both in terms of parsing, and in meaning. My understanding is that it aims to give a persistent origin to resources in the bundle that's distinct from the entity that delivered the bundle. Can you help me understand the benefits of that model so we can weigh them against the complexity it introduces?\r\n\r\n",
       "createdAt": "2020-06-09T07:45:18Z",
-      "updatedAt": "2020-06-16T06:44:17Z",
+      "updatedAt": "2020-07-10T21:59:20Z",
       "closedAt": null,
       "comments": [
         {
@@ -9041,6 +9070,13 @@
           "body": "I have a few concerns with this scheme, especially for unsigned bundles (I haven't thought through this as much as y'all obviously have, so apologies if I retread ground that you've already been over and over). In no particular order:\r\n\r\n1.  In the `package:` scheme discussed above, it's not clear to me which portions of the origin are controlled by the bundle, and which the browser verifies. In the case in which the browser downloads a bundle directly from `https://distributor/bundle.wbn`, I'm assuming that the browser is responsible for that part of the origin, and the bundle itself contains resources that make assertions about their own ostensible URLs, which form the other part of the origin? Or does the bundle contain an independent assertion of provenance?\r\n\r\n    What happens if that bundle is downloaded for offline use? Does the browser stamp it in some way with the URL from which it was downloaded, which is then used in origin calculations going forward? Does the origin shift to treat `file://~/Downloads/bundle.wbn` as the initial part of the origin (and thereby both lose access to the initial data stored in the initial `(https://distributor/bundle.wbn, ...)` origin (note that I separately would love to remove privileges like storage from `file:` URLs))?\r\n\r\n2.  However we answer the question above, the `package` origin described above contains the bundle's full path. That information will be directly exposed in a few places, both to the page directly (`window.origin`), and to other servers (`Origin` header for CORS/WebSocket handshakes, `postMessage`'s `event.origin`, etc.). It seems like that will have privacy implications, as we're moving away from exposing path information by default in `referer` (see w3c/referrer-policy#124 and w3c/referrer-policy#125, along with various vendors' independent experiments).\r\n\r\n3.  It will probably surprise no one to learn that I don't think non-secure contexts should have storage in the long term. https://github.com/mikewest/scheming-cookies will (I hope!) start us down the road of removing storage from unauthenticated/unencrypted contexts entirely, with a time-based carveout for existing devices/sites that are unable or unwilling to upgrade. It's not clear to me that we should consider unsigned bundles to be secure contexts, given that they're not signed.\r\n\r\n    If we know that the bundle was delivered securely from `https://distributor/` (because, for example, we just downloaded it), then there's a reasonable justification to tie its origin to the origin that sent us the bundle, just as we would for an HTML document delivered over the same connection. A suborigin-like scheme to tighten the scope of that bundle's origin to something distinct from the distributor itself seems reasonable to explore, as the bundled content is likely not authored by that origin.\r\n\r\n    I'm less convinced of that justification in the case of an unsigned bundle the browser just found lying around somewhere. Because the bundle is unsigned, the assertions it makes about its provenance and contents are untrustworthy. It seems like this would eventually lead to leakage of data between bundles authored by distinct parties (B builds a package that asserts to be delivered by A), which seems bad.\r\n\r\n4.  Have you considered how we'd render the origin in browser-generated contexts? The address bar representation, permission prompts, modals like `alert()`, page info dialogs, site data settings pages, etc. all seem hard.\r\n\r\n5.  Is there a \"site\" concept to speak of for `package:` domains? I'm wondering how things like cookies, `document.domain`, HSTS' `includeSubdomains`, and so on will work for the hosts asserted by resources in the bundle (and for the distributor).\r\n\r\nI think it's possible to find reasonable answers to the above, and I would like to support the kinds of use cases documented in the links above. I worry, though, that folks really do want something more powerful than the harmless \"storing a list of quizzes/games which have already been done so that it doesn\u2019t reset every time you open the publication\" use cases that seem reasonable to want to support even for unsigned bundles. Someone, somewhere, has a great idea for an amazing, totally-off-the-grid bitcoin wallet or something, and this is going to look like a great fit. It doesn't seem to me that we can make the kinds of guarantees around storage isolation in these packages that we can make with signed packages, and it may be dangerous to pretend that we can.",
           "createdAt": "2020-06-16T06:44:17Z",
           "updatedAt": "2020-06-16T06:44:17Z"
+        },
+        {
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "body": "https://github.com/WICG/webpackage/blob/master/explainers/bundle-urls-and-origins.md hopefully answers the questions above. Specifically:\r\n\r\n1. In `package:bundle-url$claimed-url`, the browser verifies the `bundle-url` part, and the contents of the bundle provide the `claimed-url`. If the bundle is downloaded for offline use, by default it has a new origin and no access to the old storage, but #588 adds a couple options for how to keep the old storage. As you pointed out, just using the Mark Of The Web is vulnerable to malicious SD cards.\r\n\r\n2. [Within a single bundle, we should present only the claimed URL.](https://github.com/WICG/webpackage/blob/master/explainers/bundle-urls-and-origins.md#same-bundle-introspection ) Outside of the bundle, we should apply the referrer policy to both the [origin](https://github.com/WICG/webpackage/blob/master/explainers/bundle-urls-and-origins.md#origins) and [referrer](https://github.com/WICG/webpackage/blob/master/explainers/bundle-urls-and-origins.md#referer-headers) information in order to strip unwanted bundle-path information out of the presented subresource origin. I *think* those don't conflict in bad ways, but it's possible I'm wrong.\r\n\r\n3. Bundles on a local filesystem satisfy the \"secure context\" criterion of \"being able to explain to a user where the bytes came from\", so I think that doesn't exclude them from getting storage. There's the general move to remove capabilities from `file:` URLs, but bundles remove some of the problems that raw files have, so maybe it's more acceptable for them to keep capabilities.\r\n\r\n4. I've written down thoughts on [URL rendering](https://github.com/WICG/webpackage/blob/master/explainers/bundle-urls-and-origins.md#rendering-the-url-bar) and [permission prompts](https://github.com/WICG/webpackage/blob/master/explainers/bundle-urls-and-origins.md#permissions). I'm not certain they're good thoughts. :)\r\n\r\n5. I think sites would be groups of claimed URLs with matching domains within a single bundle. This may interact badly with anti-tracking restrictions, for which we might want to allow communication between a site and its bundles. The new \"party\" concept in First-Party-Sets might help with this. My uncertainty here isn't yet described in the explainer.",
+          "createdAt": "2020-07-10T21:59:20Z",
+          "updatedAt": "2020-07-10T21:59:20Z"
         }
       ]
     },
@@ -46370,24 +46406,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0Mzc1MTQ3NTY3",
       "title": "Add non-browser feedback about unsigned bundles.",
       "url": "https://github.com/WICG/webpackage/pull/557",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "jyasskin",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "@dauwhe, am I representing your position well here? Is there a better description of your opinion on how we make browsers navigate to unsigned books?",
       "createdAt": "2020-02-14T00:01:14Z",
-      "updatedAt": "2020-07-08T22:03:39Z",
+      "updatedAt": "2020-07-20T20:20:44Z",
       "baseRepository": "WICG/webpackage",
       "baseRefName": "master",
       "baseRefOid": "f38446044e22e98165063363a9516b634ccd94e6",
       "headRepository": "jyasskin/webpackage",
       "headRefName": "unsigned-bundle-dev-support",
       "headRefOid": "78dfceb7e00a41b74025f11789ead689998854d7",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2020-07-20T20:20:30Z",
+      "mergedAt": "2020-07-20T20:20:30Z",
+      "mergedBy": "jyasskin",
+      "mergeCommit": {
+        "oid": "6f5c95524edc3afe0d8e8b4d4bf8e09ab306f358"
+      },
       "comments": [
         {
           "author": "KenjiBaheux",
@@ -48405,7 +48443,7 @@
       "labels": [],
       "body": "This tries to identify and describe all the places that the URL gets exposed in interesting ways to the platform, and define how they'll work. It probably misses several.\r\n\r\nYou can see this rendered at https://github.com/jyasskin/webpackage/blob/package-scheme-explainer/explainers/bundle-urls-and-origins.md.",
       "createdAt": "2020-07-06T20:34:06Z",
-      "updatedAt": "2020-07-08T22:37:57Z",
+      "updatedAt": "2020-07-09T00:48:01Z",
       "baseRepository": "WICG/webpackage",
       "baseRefName": "master",
       "baseRefOid": "f38446044e22e98165063363a9516b634ccd94e6",
@@ -48479,8 +48517,54 @@
               "updatedAt": "2020-07-08T22:29:16Z"
             }
           ]
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDQ1MjE5NDA0",
+          "commit": {
+            "abbreviatedOid": "8e03f14"
+          },
+          "author": "horo-t",
+          "authorAssociation": "COLLABORATOR",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-07-09T00:48:00Z",
+          "updatedAt": "2020-07-09T00:48:01Z",
+          "comments": [
+            {
+              "originalPosition": 361,
+              "body": "Thank you. Now I understand.",
+              "createdAt": "2020-07-09T00:48:01Z",
+              "updatedAt": "2020-07-09T00:48:01Z"
+            }
+          ]
         }
       ]
+    },
+    {
+      "number": 588,
+      "id": "MDExOlB1bGxSZXF1ZXN0NDQ3NjUyODg0",
+      "title": "Explain how storage works after a bundle is downloaded.",
+      "url": "https://github.com/WICG/webpackage/pull/588",
+      "state": "OPEN",
+      "author": "jyasskin",
+      "authorAssociation": "MEMBER",
+      "assignees": [],
+      "labels": [],
+      "body": "",
+      "createdAt": "2020-07-10T21:32:09Z",
+      "updatedAt": "2020-07-10T21:32:09Z",
+      "baseRepository": "WICG/webpackage",
+      "baseRefName": "master",
+      "baseRefOid": "fc9b3e75309546c805b5cdb1db74b2d58a8e0b28",
+      "headRepository": "jyasskin/webpackage",
+      "headRefName": "bundle-downloading",
+      "headRefOid": "e73da0033d27a28afc4af40eeb8e018cfde9f707",
+      "closedAt": null,
+      "mergedAt": null,
+      "mergedBy": null,
+      "mergeCommit": null,
+      "comments": [],
+      "reviews": []
     }
   ]
 }
