@@ -118,7 +118,7 @@ Internet-Draft                 Web Bundles                     July 2020
      7.2.  Informative References  . . . . . . . . . . . . . . . . .  26
    Appendix A.  Change Log . . . . . . . . . . . . . . . . . . . . .  27
    Appendix B.  Acknowledgements . . . . . . . . . . . . . . . . . .  27
-   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  27
+   Author's Address  . . . . . . . . . . . . . . . . . . . . . . . .  28
 
 1.  Introduction
 
@@ -851,8 +851,8 @@ Internet-Draft                 Web Bundles                     July 2020
    client MUST:
 
    1.  Let "byteStringHeader" be "bytes[bytes.length - 9]".  If
-       "byteStringHeader is not"0x48` (the CBOR ([CBORbis]) initial byte
-       for an 8-byte byte string), return an error.
+       "byteStringHeader" is not "0x48" (the CBOR ([CBORbis]) initial
+       byte for an 8-byte byte string), return an error.
 
    2.  Let "bundleLength" be "[bytes[bytes.length - 8],
        bytes[bytes.length])" (the last 8 bytes) interpreted as a big-
@@ -1462,6 +1462,14 @@ Appendix A.  Change Log
 
    RFC EDITOR PLEASE DELETE THIS SECTION.
 
+   draft-03
+
+   *  Make the manifest optional.
+
+   *  Update the reference to draft-yasskin-wpack-use-cases.
+
+   *  Retitle to "web bundles".
+
    draft-02
 
    *  Fix the initial bytes of the format.
@@ -1498,6 +1506,14 @@ Appendix B.  Acknowledgements
    Thanks to the Chrome loading team, especially Kinuko Yasuda and
    Kouhei Ueno for making the format work well when streamed.
 
+
+
+
+Yasskin                  Expires 28 January 2021               [Page 27]
+
+Internet-Draft                 Web Bundles                     July 2020
+
+
 Author's Address
 
    Jeffrey Yasskin
@@ -1509,4 +1525,44 @@ Author's Address
 
 
 
-Yasskin                  Expires 28 January 2021               [Page 27]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Yasskin                  Expires 28 January 2021               [Page 28]
