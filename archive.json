@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-07-20T20:23:42.535561+00:00",
+  "timestamp": "2020-07-27T14:07:31.026757+00:00",
   "repo": "WICG/webpackage",
   "labels": [
     {
@@ -8876,10 +8876,12 @@
       "author": "jeffkaufman",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [],
+      "labels": [
+        "discuss"
+      ],
       "body": "The current web bundle serialization has the index at the beginning, and so requires you to know the sizes and urls of all the resources the bundle will contain up-front.  If a bundle is being generated dynamically, however, it would be nice to be able to start sending out the part of the response that is ready before you necessarily know the full contents of the bundle.\r\n\r\nPre-declaring resources, when possible, is still useful, however, because it allows the consumer of the bundle to know that the bundle will contain a given resource and it shouldn't start independent efforts to acquire it.  Similarly, being able to say that a resource is not in a bundle, either by disclaiming a specific resource or by saying that no more resource declarations will follow, would let the consumer know that it should look elsewhere.\r\n\r\nIf at some point nested web bundles are supported, being able to stream out part of a nested bundle before the whole bundle is ready without blocking the whole stream would be nice.\r\n\r\nFor context, I'm looking into whether dynamically generated web bundles could at some point be used for serving a single ad response for multiple ad slots.  Streaming the bundle would allow returning a response for a slot that will soon be visible to the user as soon as it's ready, while allowing more time to complete auctions for ads lower down the page.  I expect a streaming-focused serialization format would be useful to many people who end up dynamically generate web bundles, however.",
       "createdAt": "2020-05-04T21:12:11Z",
-      "updatedAt": "2020-05-07T22:14:32Z",
+      "updatedAt": "2020-07-22T22:58:39Z",
       "closedAt": null,
       "comments": [
         {
@@ -9095,6 +9097,48 @@
       "updatedAt": "2020-06-22T13:17:55Z",
       "closedAt": null,
       "comments": []
+    },
+    {
+      "number": 589,
+      "id": "MDU6SXNzdWU2NjI5OTcyMTA=",
+      "title": "Efficient incremental bundle updates",
+      "url": "https://github.com/WICG/webpackage/issues/589",
+      "state": "OPEN",
+      "author": "quasicomputational",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [],
+      "body": "Nice-to-have use-case: Serving a bundle of many pages for offline use. Think, e.g., downloading a large slice of Wikipedia.\r\n\r\nAssociated requirement: Updating bundles without needing to re-write the entire bundle, so that (e.g.) a single 100 kB response changing, being added or deleted doesn't result in needing to also re-write the 10 GB of 100,000 unchanged responses.\r\n\r\nNon-goal: Updating only part of a single large response incrementally.\r\n\r\nThe alternative is to accept that updating a bundle can't be done incrementally; presumably the work-around would be to instead serve many bundles that are small enough that re-writing them isn't painful, and instead suffer the pain of dealing with many bundles instead of just one. Even in that case, I'd like to see the use case & requirement written down as something that was explicitly declined as part of a trade-off, rather than just not considered.\r\n\r\nThis is *almost* supported by the spec as is, but blocked by two things: first, how the index can't be placed last in the stream (because the responses section must be the last); and, second, CBOR does not allow padding around responses (though the spec, as written, doesn't break if padding is added - the section is never parsed as CBOR and finding responses is all done with offsets).\r\n\r\nIf I squint and imagine that these are non-issues, to create an incrementally-updatable bundle, place the index section after the responses section, and make sure that the section lengths are written as bignums with plenty of leading bits; to update the bundle append the new responses to the end of the responses section and then append the new index section and re-write lengths/offsets as needed.\r\n\r\nThere's a security consideration here, though: the above procedue will leave old responses in the bundle, which could be an information leak. Zeroing redundant responses out is a partial solution, but still leaks response length; aligning responses to, e.g., 1 KiB boundaries would reduce the length leak. The need for padding would also mean that a bundle wouldn't be a valid CBOR document.\r\n\r\nThe updater could keep track of zeroed-out ranges and opportunistically place new responses there, but a dumber append-only strategy should work pretty well in most situations, trading implementation simplicity & reduced state for (uncompressed) bundle size.\r\n\r\nImplementations might also get clever with opportunistic use of sparse files, so there should be at least a SHOULD on using zero bytes specifically to enable that.\r\n",
+      "createdAt": "2020-07-21T13:03:58Z",
+      "updatedAt": "2020-07-21T13:03:58Z",
+      "closedAt": null,
+      "comments": []
+    },
+    {
+      "number": 590,
+      "id": "MDU6SXNzdWU2NjQ4ODM5NjM=",
+      "title": "Primary URL for Bundle Subresources",
+      "url": "https://github.com/WICG/webpackage/issues/590",
+      "state": "OPEN",
+      "author": "Jxck",
+      "authorAssociation": "NONE",
+      "assignees": [],
+      "labels": [
+        "needs spec"
+      ],
+      "body": "In case of Bundle Subresources, what is correct value for primaryURL ?",
+      "createdAt": "2020-07-24T03:00:54Z",
+      "updatedAt": "2020-07-27T10:55:11Z",
+      "closedAt": null,
+      "comments": [
+        {
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "body": "@horo-t was suggesting that we ought not to require a primaryURL when a bundle's being used to preload subresources.",
+          "createdAt": "2020-07-27T10:55:00Z",
+          "updatedAt": "2020-07-27T10:55:00Z"
+        }
+      ]
     }
   ],
   "pulls": [
