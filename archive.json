@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-07-27T14:07:31.026757+00:00",
+  "timestamp": "2020-07-29T19:21:30.538424+00:00",
   "repo": "WICG/webpackage",
   "labels": [
     {
@@ -48589,24 +48589,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0NDQ3NjUyODg0",
       "title": "Explain how storage works after a bundle is downloaded.",
       "url": "https://github.com/WICG/webpackage/pull/588",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "jyasskin",
       "authorAssociation": "MEMBER",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2020-07-10T21:32:09Z",
-      "updatedAt": "2020-07-10T21:32:09Z",
+      "updatedAt": "2020-07-29T19:17:44Z",
       "baseRepository": "WICG/webpackage",
       "baseRefName": "master",
       "baseRefOid": "fc9b3e75309546c805b5cdb1db74b2d58a8e0b28",
       "headRepository": "jyasskin/webpackage",
       "headRefName": "bundle-downloading",
       "headRefOid": "e73da0033d27a28afc4af40eeb8e018cfde9f707",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
-      "mergeCommit": null,
+      "closedAt": "2020-07-29T19:17:36Z",
+      "mergedAt": "2020-07-29T19:17:36Z",
+      "mergedBy": "jyasskin",
+      "mergeCommit": {
+        "oid": "f6a6b39f4c06ad9c029b2590d7c88a427058bd30"
+      },
       "comments": [],
       "reviews": []
     }
