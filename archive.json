@@ -1,6 +1,6 @@
 {
   "magic": "E!vIA5L86J2I",
-  "timestamp": "2020-07-29T19:21:30.538424+00:00",
+  "timestamp": "2020-08-07T19:17:13.791760+00:00",
   "repo": "WICG/webpackage",
   "labels": [
     {
@@ -8872,17 +8872,15 @@
       "id": "MDU6SXNzdWU2MTIxNzE0NDI=",
       "title": "Serialization format optimized for streaming",
       "url": "https://github.com/WICG/webpackage/issues/577",
-      "state": "OPEN",
+      "state": "CLOSED",
       "author": "jeffkaufman",
       "authorAssociation": "NONE",
       "assignees": [],
-      "labels": [
-        "discuss"
-      ],
+      "labels": [],
       "body": "The current web bundle serialization has the index at the beginning, and so requires you to know the sizes and urls of all the resources the bundle will contain up-front.  If a bundle is being generated dynamically, however, it would be nice to be able to start sending out the part of the response that is ready before you necessarily know the full contents of the bundle.\r\n\r\nPre-declaring resources, when possible, is still useful, however, because it allows the consumer of the bundle to know that the bundle will contain a given resource and it shouldn't start independent efforts to acquire it.  Similarly, being able to say that a resource is not in a bundle, either by disclaiming a specific resource or by saying that no more resource declarations will follow, would let the consumer know that it should look elsewhere.\r\n\r\nIf at some point nested web bundles are supported, being able to stream out part of a nested bundle before the whole bundle is ready without blocking the whole stream would be nice.\r\n\r\nFor context, I'm looking into whether dynamically generated web bundles could at some point be used for serving a single ad response for multiple ad slots.  Streaming the bundle would allow returning a response for a slot that will soon be visible to the user as soon as it's ready, while allowing more time to complete auctions for ads lower down the page.  I expect a streaming-focused serialization format would be useful to many people who end up dynamically generate web bundles, however.",
       "createdAt": "2020-05-04T21:12:11Z",
-      "updatedAt": "2020-07-22T22:58:39Z",
-      "closedAt": null,
+      "updatedAt": "2020-07-31T14:25:06Z",
+      "closedAt": "2020-07-31T14:25:06Z",
       "comments": [
         {
           "author": "jyasskin",
@@ -8890,6 +8888,13 @@
           "body": "Thanks for the concrete use case! We discussed this in #6, where the lack of a concrete use case led me to say we shouldn't support this kind of streamed generation, so now's a good time to reopen the question.\r\n\r\nIn some ways, MHTML could be the streamed-generation version of the [random-access bundles format here](https://wicg.github.io/webpackage/draft-yasskin-wpack-bundled-exchanges.html), but I think there's appetite to replace the text bits of MHTML with a binary format, and we can re-use the header representations from the random-access one. MHTML also doesn't have a native way to promise that particular responses will be available later.\r\n\r\nAnother possible design would be as a sequence of [HTTP/2 frames](https://httpwg.org/specs/rfc7540.html#FrameTypes). (They'd be serialized into a file format rather than actually being in an HTTP/2 connection.) PUSH_PROMISE serves as a way to say that a particular URL will eventually arrive. I don't think there's a way to disclaim a resource, but 1) we could invent one, and 2) I suspect we don't actually need it: the default should be to assume arbitrary resources _aren't_ in any bundle. I suspect we'll want to at least customize this a bit so it embeds fewer assumptions that it's living in a real-time connection.\r\n\r\nAnd, of course, there's the option of matching the random-access bundle format as much as possible and just pulling smaller amounts of inspiration from the above two options.",
           "createdAt": "2020-05-07T22:14:16Z",
           "updatedAt": "2020-05-07T22:14:32Z"
+        },
+        {
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "body": "We discussed this briefly at the IETF 108 WPACK meeting, and there wasn't support in the room to add a variant of the format that supports streamed generation. It seemed like people were open to being convinced by measurements that it'll actually help, so anyone should feel free to re-open this bug with more evidence that it'll pay off.",
+          "createdAt": "2020-07-31T14:25:06Z",
+          "updatedAt": "2020-07-31T14:25:06Z"
         }
       ]
     },
@@ -38389,10 +38394,19 @@
       "labels": [],
       "body": "Fix typo in error message.",
       "createdAt": "2019-06-07T22:31:25Z",
-      "updatedAt": "2019-06-08T00:20:47Z",
+      "updatedAt": "2020-08-07T18:36:50Z",
+      "baseRepository": "WICG/webpackage",
+      "baseRefName": "master",
+      "baseRefOid": "916c069dc6f791608b2358209766555fb8af0e1f",
+      "headRepository": "WICG/webpackage",
+      "headRefName": "twifkak-sinature",
+      "headRefOid": "2d852b49e1075ee8d8801b6dcac7ef794b0a5581",
       "closedAt": "2019-06-08T00:20:47Z",
       "mergedAt": "2019-06-08T00:20:47Z",
       "mergedBy": "irori",
+      "mergeCommit": {
+        "oid": "0a7d6e6a4014a1ef9d4f6b62ebc1cce67894a315"
+      },
       "comments": [],
       "reviews": [
         {
@@ -38408,16 +38422,7 @@
           "updatedAt": "2019-06-08T00:20:23Z",
           "comments": []
         }
-      ],
-      "baseRepository": "WICG/webpackage",
-      "baseRefName": "master",
-      "baseRefOid": "916c069dc6f791608b2358209766555fb8af0e1f",
-      "headRepository": "WICG/webpackage",
-      "headRefName": "twifkak-sinature",
-      "headRefOid": "2d852b49e1075ee8d8801b6dcac7ef794b0a5581",
-      "mergeCommit": {
-        "oid": "0a7d6e6a4014a1ef9d4f6b62ebc1cce67894a315"
-      }
+      ]
     },
     {
       "number": 443,
@@ -42753,17 +42758,26 @@
       "id": "MDExOlB1bGxSZXF1ZXN0MzM3MTI2ODIz",
       "title": "TravisCI: Test nodejs module",
       "url": "https://github.com/WICG/webpackage/pull/519",
-      "state": "OPEN",
+      "state": "MERGED",
       "author": "irori",
       "authorAssociation": "COLLABORATOR",
       "assignees": [],
       "labels": [],
       "body": "",
       "createdAt": "2019-11-06T01:48:00Z",
-      "updatedAt": "2019-11-06T02:27:51Z",
-      "closedAt": null,
-      "mergedAt": null,
-      "mergedBy": null,
+      "updatedAt": "2020-08-07T19:12:59Z",
+      "baseRepository": "WICG/webpackage",
+      "baseRefName": "master",
+      "baseRefOid": "f978cb7186f5f730aa1094d64bc2927cd7d5d22a",
+      "headRepository": "irori/webpackage",
+      "headRefName": "travis",
+      "headRefOid": "e8ce88449a30a43f2fceb8fa5a9400744309ed13",
+      "closedAt": "2020-08-07T19:12:59Z",
+      "mergedAt": "2020-08-07T19:12:59Z",
+      "mergedBy": "jyasskin",
+      "mergeCommit": {
+        "oid": "2ab2cca9b8e211c6dff98ef3ebc4c694d7927446"
+      },
       "comments": [
         {
           "author": "irori",
@@ -42773,14 +42787,41 @@
           "updatedAt": "2019-11-06T02:27:51Z"
         }
       ],
-      "reviews": [],
-      "baseRepository": "WICG/webpackage",
-      "baseRefName": "master",
-      "baseRefOid": "d91f24c194b45e448f489bc133a6e485dbb15f6a",
-      "headRepository": "irori/webpackage",
-      "headRefName": "travis",
-      "headRefOid": "6739869c065ae192da1931b6970fca28e0bc0725",
-      "mergeCommit": null
+      "reviews": [
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDYyOTIwNDg4",
+          "commit": {
+            "abbreviatedOid": "75fd340"
+          },
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "state": "APPROVED",
+          "body": "Sorry that I entirely missed this. Looks good. I've rebased, will let Travis double-check it, and then will merge.",
+          "createdAt": "2020-08-06T22:34:45Z",
+          "updatedAt": "2020-08-06T22:34:45Z",
+          "comments": []
+        },
+        {
+          "id": "MDE3OlB1bGxSZXF1ZXN0UmV2aWV3NDYyOTIyMDg3",
+          "commit": {
+            "abbreviatedOid": "75fd340"
+          },
+          "author": "jyasskin",
+          "authorAssociation": "MEMBER",
+          "state": "COMMENTED",
+          "body": "",
+          "createdAt": "2020-08-06T22:38:48Z",
+          "updatedAt": "2020-08-06T22:38:48Z",
+          "comments": [
+            {
+              "originalPosition": 9,
+              "body": "There is an [`npm ci`](https://docs.npmjs.com/cli/ci.html) command that would probably be better here.",
+              "createdAt": "2020-08-06T22:38:48Z",
+              "updatedAt": "2020-08-07T18:35:24Z"
+            }
+          ]
+        }
+      ]
     },
     {
       "number": 520,
