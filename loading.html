@@ -1222,9 +1222,9 @@ Possible extra rowspan handling
 	}
 </style>
   <link href="https://www.w3.org/StyleSheets/TR/2016/cg-draft" rel="stylesheet">
-  <meta content="Bikeshed version 7c63c139, updated Fri Jul 17 17:12:19 2020 -0700" name="generator">
+  <meta content="Bikeshed version c05ebec3, updated Fri Jul 31 13:58:05 2020 -0700" name="generator">
   <link href="https://wicg.github.io/webpackage/loading.html" rel="canonical">
-  <meta content="331fe7ec9081f1d7a369505c0abc7064337edc5d" name="document-revision">
+  <meta content="2ab2cca9b8e211c6dff98ef3ebc4c694d7927446" name="document-revision">
 <style>/* style-autolinks */
 
 .css.css, .property.property, .descriptor.descriptor {
@@ -1482,7 +1482,7 @@ c-[il] { color: #000000 } /* Literal.Number.Integer.Long */
   <div class="head">
    <p data-fill-with="logo"></p>
    <h1 class="p-name no-ref" id="title">Loading Signed Exchanges</h1>
-   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2020-07-30">30 July 2020</time></span></h2>
+   <h2 class="no-num no-toc no-ref heading settled" id="subtitle"><span class="content">Draft Community Group Report, <time class="dt-updated" datetime="2020-08-07">7 August 2020</time></span></h2>
    <div data-fill-with="spec-metadata">
     <dl>
      <dt>This version:
@@ -2013,16 +2013,12 @@ from <var>stream</var>.</p>
 trust</a> for <var>parsedExchange</var>, return
 "<a data-link-type="dfn" href="#signed-exchange-report-cert_verification_error" id="ref-for-signed-exchange-report-cert_verification_error">cert_verification_error</a>".</p>
     <li data-md>
-     <p>Set <var>parsedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response④">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-https-state" id="ref-for-concept-response-https-state">HTTPS state</a> to
-either "<code>deprecated</code>" or "<code>modern</code>".</p>
-     <p class="note" role="note"><span>Note:</span> See <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-http-network-fetch" id="ref-for-concept-http-network-fetch">HTTP-network fetch</a> for details of this choice.</p>
-    <li data-md>
-     <p>If <var>parsedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑤">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-status" id="ref-for-concept-response-status①">status</a> is a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#redirect-status" id="ref-for-redirect-status①">redirect status</a> or the <a data-link-type="dfn" href="#signed-exchange-version" id="ref-for-signed-exchange-version③">signed exchange version</a> of <var>parsedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑥">response</a> is not undefined, return
+     <p>If <var>parsedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response④">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-status" id="ref-for-concept-response-status①">status</a> is a <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#redirect-status" id="ref-for-redirect-status①">redirect status</a> or the <a data-link-type="dfn" href="#signed-exchange-version" id="ref-for-signed-exchange-version③">signed exchange version</a> of <var>parsedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑤">response</a> is not undefined, return
 "<a data-link-type="dfn" href="#signed-exchange-report-parse_error" id="ref-for-signed-exchange-report-parse_error⑦">parse_error</a>".</p>
      <p class="note" role="note"><span>Note:</span> This might simplify the UA’s implementation, since it doesn’t have to
 handle nested signed exchanges.</p>
     <li data-md>
-     <p><a data-link-type="dfn" href="#reading-a-body" id="ref-for-reading-a-body">Read a body</a> from <var>stream</var> into <var>parsedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑦">response</a> using <var>parsedSignature</var> to check its integrity. If
+     <p><a data-link-type="dfn" href="#reading-a-body" id="ref-for-reading-a-body">Read a body</a> from <var>stream</var> into <var>parsedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑥">response</a> using <var>parsedSignature</var> to check its integrity. If
 this returns an error string, return it.</p>
      <p class="note" role="note"><span>Note:</span> Typically this body’s stream is still being enqueued to after
 returning.</p>
@@ -2292,7 +2288,7 @@ cross-origin trust" data-noexport id="exchange-signature-establishes-cross-origi
     <li data-md>
      <p>If <var>signature</var>’s <a data-link-type="dfn" href="#exchange-signature-validityurl" id="ref-for-exchange-signature-validityurl②">validityUrl</a>'s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin①">origin</a> is not <a data-link-type="dfn" href="https://html.spec.whatwg.org/multipage/origin.html#same-origin" id="ref-for-same-origin">same origin</a> with <var>requestUrl</var>’s <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-origin" id="ref-for-concept-url-origin②">origin</a>, return "untrusted".</p>
     <li data-md>
-     <p>If <var>exchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑧">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list④">header list</a> includes an <a data-link-type="dfn" href="https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html#uncached-headers" id="ref-for-uncached-headers">uncached response header</a>, return "untrusted".</p>
+     <p>If <var>exchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑦">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list④">header list</a> includes an <a data-link-type="dfn" href="https://wicg.github.io/webpackage/draft-yasskin-http-origin-signed-responses.html#uncached-headers" id="ref-for-uncached-headers">uncached response header</a>, return "untrusted".</p>
     <li data-md>
      <p>If <var>signature</var>’s <a data-link-type="dfn" href="#exchange-signature-expiration-time" id="ref-for-exchange-signature-expiration-time⑦">expiration time</a> is more than 604800
 seconds (7 days) after <var>signature</var>’s <a data-link-type="dfn" href="#exchange-signature-date" id="ref-for-exchange-signature-date⑥">date</a>, return
@@ -2513,7 +2509,7 @@ re-fetching it.</p>
     <li data-md>
      <p>If <var>browserRequest</var>’s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-request-url" id="ref-for-concept-request-url①">url</a> is not <a data-link-type="dfn" href="https://url.spec.whatwg.org/#concept-url-equals" id="ref-for-concept-url-equals">equal</a> to <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-request-url" id="ref-for-exchange-request-url④">request URL</a>, return "mismatch".</p>
     <li data-md>
-     <p>If <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑨">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list⑨">header list</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-list-contains" id="ref-for-header-list-contains②">contains</a>:</p>
+     <p>If <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑧">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list⑨">header list</a> <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#header-list-contains" id="ref-for-header-list-contains②">contains</a>:</p>
      <dl class="switch">
       <dt data-md>Neither a <code>`Variants`</code> nor a <code>`Variant-Key`</code> header
       <dd data-md>
@@ -2535,14 +2531,14 @@ explicit here.</p>
        <p>Proceed to the following steps.</p>
      </dl>
     <li data-md>
-     <p>If <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list-get" id="ref-for-concept-header-list-get">getting</a> <code>`Variants`</code> from <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response①⓪">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list①⓪">header list</a> returns a value that fails
+     <p>If <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list-get" id="ref-for-concept-header-list-get">getting</a> <code>`Variants`</code> from <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response⑨">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list①⓪">header list</a> returns a value that fails
 to parse according to the instructions for the <a data-link-type="http-header" href="https://httpwg.org/http-extensions/draft-ietf-httpbis-variants.html#variants" id="ref-for-variants">Variants</a> Header Field, return "mismatch".</p>
     <li data-md>
      <p>Let <var>acceptableVariantKeys</var> be the result of running the <a data-link-type="dfn" href="https://httpwg.org/http-extensions/draft-ietf-httpbis-variants.html#cache" id="ref-for-cache">Variants Cache
 Behavior</a> on an incoming-request of <var>browserRequest</var> and stored-responses
-of a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②">list</a> containing <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response①①">response</a>.</p>
+of a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list②">list</a> containing <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response①⓪">response</a>.</p>
     <li data-md>
-     <p>Let <var>variantKeys</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list-get" id="ref-for-concept-header-list-get①">getting</a> <code>`Variant-Key`</code> from <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response①②">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list①①">header list</a>,
+     <p>Let <var>variantKeys</var> be the result of <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-header-list-get" id="ref-for-concept-header-list-get①">getting</a> <code>`Variant-Key`</code> from <var>storedExchange</var>’s <a data-link-type="dfn" href="#exchange-response" id="ref-for-exchange-response①①">response</a>'s <a data-link-type="dfn" href="https://fetch.spec.whatwg.org/#concept-response-header-list" id="ref-for-concept-response-header-list①①">header list</a>,
 and parsing it into a <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list③">list</a> of <a data-link-type="dfn" href="https://infra.spec.whatwg.org/#list" id="ref-for-list④">lists</a> as described in the <a data-link-type="http-header" href="https://httpwg.org/http-extensions/draft-ietf-httpbis-variants.html#variant-key" id="ref-for-variant-key">Variant-Key</a> Header Field.</p>
     <li data-md>
      <p>If parsing <var>variantKeys</var> failed, return "mismatch".</p>
@@ -3292,22 +3288,10 @@ stop the UA from trusting it no more than 7 days later.</p>
     <li><a href="#ref-for-concept-http-fetch">2.4. Monkeypatch HTTP fetch</a>
    </ul>
   </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-http-network-fetch">
-   <a href="https://fetch.spec.whatwg.org/#concept-http-network-fetch">https://fetch.spec.whatwg.org/#concept-http-network-fetch</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-http-network-fetch">4.3. Parsing signed exchanges</a>
-   </ul>
-  </aside>
   <aside class="dfn-panel" data-for="term-for-concept-http-network-or-cache-fetch">
    <a href="https://fetch.spec.whatwg.org/#concept-http-network-or-cache-fetch">https://fetch.spec.whatwg.org/#concept-http-network-or-cache-fetch</a><b>Referenced in:</b>
    <ul>
     <li><a href="#ref-for-concept-http-network-or-cache-fetch">2.5. Monkeypatch HTTP-network-or-cache fetch</a>
-   </ul>
-  </aside>
-  <aside class="dfn-panel" data-for="term-for-concept-response-https-state">
-   <a href="https://fetch.spec.whatwg.org/#concept-response-https-state">https://fetch.spec.whatwg.org/#concept-response-https-state</a><b>Referenced in:</b>
-   <ul>
-    <li><a href="#ref-for-concept-response-https-state">4.3. Parsing signed exchanges</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="term-for-concept-request-initiator">
@@ -3880,9 +3864,7 @@ stop the UA from trusting it no more than 7 days later.</p>
      <li><span class="dfn-paneled" id="term-for-handle-content-codings" style="color:initial">handle content codings</span>
      <li><span class="dfn-paneled" id="term-for-concept-response-header-list" style="color:initial">header list <small>(for response)</small></span>
      <li><span class="dfn-paneled" id="term-for-concept-http-fetch" style="color:initial">http fetch</span>
-     <li><span class="dfn-paneled" id="term-for-concept-http-network-fetch" style="color:initial">http-network fetch</span>
      <li><span class="dfn-paneled" id="term-for-concept-http-network-or-cache-fetch" style="color:initial">http-network-or-cache fetch</span>
-     <li><span class="dfn-paneled" id="term-for-concept-response-https-state" style="color:initial">https state</span>
      <li><span class="dfn-paneled" id="term-for-concept-request-initiator" style="color:initial">initiator</span>
      <li><span class="dfn-paneled" id="term-for-concept-request-method" style="color:initial">method</span>
      <li><span class="dfn-paneled" id="term-for-concept-request-mode" style="color:initial">mode</span>
@@ -4139,9 +4121,9 @@ them to. <a href="https://github.com/whatwg/fetch/issues/730">&lt;https://github
    <ul>
     <li><a href="#ref-for-exchange-response">2.2. Request clone</a> <a href="#ref-for-exchange-response①">(2)</a>
     <li><a href="#ref-for-exchange-response②">2.5. Monkeypatch HTTP-network-or-cache fetch</a> <a href="#ref-for-exchange-response③">(2)</a>
-    <li><a href="#ref-for-exchange-response④">4.3. Parsing signed exchanges</a> <a href="#ref-for-exchange-response⑤">(2)</a> <a href="#ref-for-exchange-response⑥">(3)</a> <a href="#ref-for-exchange-response⑦">(4)</a>
-    <li><a href="#ref-for-exchange-response⑧">4.8. Cross-origin trust</a>
-    <li><a href="#ref-for-exchange-response⑨">4.13. Request matching</a> <a href="#ref-for-exchange-response①⓪">(2)</a> <a href="#ref-for-exchange-response①①">(3)</a> <a href="#ref-for-exchange-response①②">(4)</a>
+    <li><a href="#ref-for-exchange-response④">4.3. Parsing signed exchanges</a> <a href="#ref-for-exchange-response⑤">(2)</a> <a href="#ref-for-exchange-response⑥">(3)</a>
+    <li><a href="#ref-for-exchange-response⑦">4.8. Cross-origin trust</a>
+    <li><a href="#ref-for-exchange-response⑧">4.13. Request matching</a> <a href="#ref-for-exchange-response⑨">(2)</a> <a href="#ref-for-exchange-response①⓪">(3)</a> <a href="#ref-for-exchange-response①①">(4)</a>
    </ul>
   </aside>
   <aside class="dfn-panel" data-for="read-buffer">
